@@ -1,0 +1,60 @@
+<div class="row">
+  <div class="col-12">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+      <div class="row my-3">
+        <div class="col-12">
+          <label for="name" class="form-label">Name</label>
+          <input type="text" id="name" class="form-control" formControlName="name">
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-8">
+          <label for="imageSrc" class="form-label">Image Source</label>
+          <input type="text" id="imageSrc" class="form-control" formControlName="imageSrc">
+        </div>
+        <div class="col-4">
+          <img [src]="form.get('imageSrc').value" style="max-height: 100px;">
+        </div>
+      </div>
+      <div class="row my-3">
+        <div class="col-12">
+          <label for="description" class="form-label">Description</label>
+          <textarea formControlName="description" id="description" class="form-control" rows="5"></textarea>
+        </div>
+      </div>
+
+      <hr>
+
+      <div class="my-3" formArrayName="ingredients">
+        <div class="d-flex">
+          <h4>Ingredients</h4>
+          <button class="btn btn-success ms-3" type="button" (click)="onAddIngredient()">Add Ingredient</button>
+        </div>
+        <div
+          class="row my-2 align-items-end"
+          *ngFor="let ingredient of ingredients(); let i = index;"
+          [formGroupName]="i"
+        >
+          <div class="col-8">
+            <label for="ingredientName" class="form-label">Name</label>
+            <input type="text" id="ingredientName" class="form-control" formControlName="name">
+          </div>
+          <div class="col-2">
+            <label for="amount" class="form-label">Amount</label>
+            <input type="number" id="amount" class="form-control" formControlName="amount">
+          </div>
+          <div class="col-2">
+            <button class="btn btn-danger" type="button" (click)="onDeleteIngredient(i)">X</button>
+          </div>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-12">
+          <button type="submit" class="btn btn-primary me-3" [disabled]="form.invalid">Save</button>
+          <button type="button" class="btn btn-secondary" (click)="onCancel()">Cancel</button>
+        </div>
+      </div>
+    </form>
+  </div>
+</div>

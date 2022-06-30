@@ -1,0 +1,9 @@
+<a
+  class="list-group-item clearfix recipe-item"
+  [routerLink]="[id]"
+  routerLinkActive="active"
+>
+  <img class="img-fluid float-end" [src]="recipe.imageSrc" [alt]="recipe.name" style="max-height: 50px;">
+  <h4>{{ recipe.name }}</h4>
+  {{ recipe.description }}
+</a>
